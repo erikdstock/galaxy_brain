@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 volumes:
   galaxy_brain_local_postgres_data: {}
@@ -19,8 +19,7 @@ services:
     volumes:
       - .:/app:z
     env_file:
-      - ./.envs/.local/.django
-      - ./.envs/.local/.postgres
+      - .env
     ports:
       - "8000:8000"
     command: /start
@@ -35,7 +34,13 @@ services:
       - galaxy_brain_local_postgres_data:/var/lib/postgresql/data:Z
       - galaxy_brain_local_postgres_data_backups:/backups:z
     env_file:
-      - ./.envs/.local/.postgres
+      - .env
+    ports:
+      - "${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}"
+    command:
+      - "postgres"
+      - "-c"
+      - "port=${POSTGRES_PORT:-5432}"
 
   docs:
     image: galaxy_brain_local_docs
@@ -45,7 +50,7 @@ services:
       context: .
       dockerfile: ./compose/local/docs/Dockerfile
     env_file:
-      - ./.envs/.local/.django
+      - .env
     volumes:
       - ./docs:/docs:z
       - ./config:/app/config:z
@@ -63,6 +68,13 @@ services:
   redis:
     image: redis:6
     container_name: galaxy_brain_local_redis
+    env_file: .env
+    ports:
+      - "${REDIS_PORT:-6379}:${REDIS_PORT:-6379}"
+    command:
+      - "redis-server"
+      - "--port"
+      - "${REDIS_PORT:-6379}"
 
   celeryworker:
     <<: *django
