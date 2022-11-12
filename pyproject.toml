@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "galaxy-brain"
+version = "0.1.0"
+description = ""
+authors = ["Ty Schlichenmeyer <tyschlich@gmail.com>"]
+license = "GNUv3"
+readme = "README.md"
+packages = [{include = "galaxy_brain"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.3"
+celery = "^5.2.7"
+django-environ = "^0.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
