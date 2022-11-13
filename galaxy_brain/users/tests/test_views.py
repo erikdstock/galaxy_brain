@@ -11,11 +11,7 @@ from django.urls import reverse
 from galaxy_brain.users.forms import UserAdminChangeForm
 from galaxy_brain.users.models import User
 from galaxy_brain.users.tests.factories import UserFactory
-from galaxy_brain.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from galaxy_brain.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
