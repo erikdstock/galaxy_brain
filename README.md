@@ -7,6 +7,17 @@ Source of Truth
 
 License: MIT
 
+## Development
+
+This application uses docker-compose for development. You should have a running docker environment for development. For more information see the cookiecutter-django [Developing locally in docker guide](https://github.com/Qoyyuum/cookiecutter-django/blob/103cc9f2ffb594796b98b2916ecec043b8b5dd9e/docs/developing-locally-docker.rst).
+
+In addition the following changes have been made for local development:
+
+- The `local.yml` docker-compose file has been renamed to the default `docker-compose.yml` - no need to add `-f local.yml` to every docker-compose command.
+- The `.env` files defined in `.envs/local` have been moved into a single global `.env` file.
+
+**Subsequent instructions in this readme assume that most commands will be prefixed with `docker-compose run --rm`.**
+
 ## Settings
 
 Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
@@ -15,11 +26,11 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 ### Setting Up Your Users
 
--   To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
 
--   To create a **superuser account**, use this command:
+- To create a **superuser account**, use this command:
 
-        $ python manage.py createsuperuser
+      $ python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
@@ -51,12 +62,12 @@ This app comes with Celery.
 
 To run a celery worker:
 
-``` bash
+```bash
 cd galaxy_brain
 celery -A config.celery_app worker -l info
 ```
 
-Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
+Please note: For Celery's import magic to work, it is important _where_ the celery commands are run. If you are in the same folder with _manage.py_, you should be right.
 
 ### Email Server
 
