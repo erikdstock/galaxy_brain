@@ -16,7 +16,7 @@ In addition the following changes have been made for local development:
 - The `local.yml` docker-compose file has been renamed to the default `docker-compose.yml` - no need to add `-f local.yml` to every docker-compose command.
 - The `.env` files defined in `.envs/local` have been moved into a single global `.env` file.
 
-**Subsequent instructions in this readme assume that most commands will be prefixed with `docker-compose run --rm`.**
+**Subsequent instructions in this readme assume that most commands will be prefixed with `docker-compose run --rm`.** It is highly recommended that you install `pre-commit` in your local development environment, then install the git hooks with `pre-commit install`.
 
 ## Settings
 
